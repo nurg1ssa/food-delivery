@@ -6,8 +6,11 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { StateProvider } from "./context/StateProvider";
 import { initialState } from './context/initialState'
 import reducer from "./context/reducer";
+import * as ReactDOMClient from 'react-dom/client';
 
-ReactDOM.render(
+const root = ReactDOMClient.createRoot(document.getElementById("root"));
+
+root.render(
     <Router>
         <StateProvider initialState={initialState} reducer={reducer}>
             <App />    
