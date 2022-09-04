@@ -113,7 +113,6 @@ const Header = () => {
                     <img src={Logo} alt='logo' className='w-8 object-cover' ></img>
                     <p className='text-headingColor text-xl font-bold'>City</p>
                 </Link >
-
                 <div className='relative'>
                     <motion.img
                         whileTap={{ scale: 0.6 }}
@@ -123,7 +122,7 @@ const Header = () => {
                         referrerPolicy="no-referrer"
                         onClick={login}
                     />
-                    {
+                    { 
                         isMenu && (
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.1 }}
