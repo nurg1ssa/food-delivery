@@ -28,6 +28,7 @@ module.exports = {
         370: '370px',
         420: '420px',
         510: '510px',
+        575: '575px',
         600: '600px',
         650: '650px',
         685: '685px',
@@ -51,7 +52,8 @@ module.exports = {
         textColor: '#515151',
         cartNumBg: '#e80013',
         primary: '#f5f3f3',
-
+        cardOverlay: 'rgba(256,256,256,0.4)',
+        lighttextGray: '#9ca0ab'
       },
     },
   },
