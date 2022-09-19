@@ -6,6 +6,7 @@ import RowContainer from './RowContainer'
 import { useStateValue } from '../context/StateProvider'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import MenuContainer from './MenuContainer'
 function MainContainer() {
   const [{foodItems}, dispatch] = useStateValue() 
   var i = 0
@@ -27,7 +28,7 @@ function MainContainer() {
              onClick={()=> {
               i-=200
               setScrollValue(i)}}
-             className='w-8 h-8 rounded-lg bg-orange-300 hover:bg-orange-500 cursor-pointer transition-all duration-100 ease-in-out hover:shadow-lg flex items-center justify-center'>
+             className='w-8 h-8 rounded-lg bg-orange-300 hover:bg-orange-500 cursor-pointer transition-all hover:shadow-lg flex items-center justify-center'>
               <MdChevronLeft className='text-lg text-white' />
             </motion.div>
             <motion.div 
@@ -35,13 +36,14 @@ function MainContainer() {
             onClick={()=> {
               i+=200
               setScrollValue(i)}}
-            className='w-8 h-8 rounded-lg bg-orange-300 hover:bg-orange-500 cursor-pointer transition-all duration-100 ease-in-out hover:shadow-lg flex items-center justify-center'>
+            className='w-8 h-8 rounded-lg bg-orange-300 hover:bg-orange-500 cursor-pointer transition-all hover:shadow-lg flex items-center justify-center'>
               <MdChevronRight className='text-lg text-white' />
             </motion.div>
           </div>
         </div>
         <RowContainer scrollValue={scrollValue} flag={true} data={foodItems?.filter(n=>n.category === 'fruits')} />
       </section>
+      <MenuContainer />
     </div>
   )
 }
