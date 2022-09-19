@@ -26,7 +26,7 @@ const MenuContainer = () => {
                     ))}
                 </div>
                 <div className='w-full'>
-                    <RowContainer flag={false} data={foodItems} />
+                    <RowContainer flag={false} data={foodItems?.filter(n=> n.category == filter)} />
                 </div>
             </div>
         </section>
