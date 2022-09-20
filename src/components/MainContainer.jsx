@@ -7,6 +7,7 @@ import { useStateValue } from '../context/StateProvider'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import MenuContainer from './MenuContainer'
+import CartContainer from './CartContainer'
 function MainContainer() {
   const [{foodItems}, dispatch] = useStateValue() 
   var i = 0
@@ -42,6 +43,7 @@ function MainContainer() {
           </div>
         </div>
         <RowContainer scrollValue={scrollValue} flag={true} data={foodItems?.filter(n=>n.category === 'fruits')} />
+        <CartContainer />
       </section>
       <MenuContainer />
     </div>
