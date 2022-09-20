@@ -9,10 +9,10 @@ import { useEffect } from 'react'
 import MenuContainer from './MenuContainer'
 import CartContainer from './CartContainer'
 function MainContainer() {
-  const [{foodItems}, dispatch] = useStateValue() 
+  const [{foodItems, cartShow}, dispatch] = useStateValue() 
   var i = 0
   const [scrollValue, setScrollValue] = useState(i)
-  useEffect(() => {}, [scrollValue])
+  useEffect(() => {}, [scrollValue, cartShow])
 
   return (
     <div className='w-full h-auto flex flex-col items-center justify-center'>
@@ -43,9 +43,11 @@ function MainContainer() {
           </div>
         </div>
         <RowContainer scrollValue={scrollValue} flag={true} data={foodItems?.filter(n=>n.category === 'fruits')} />
-        <CartContainer />
       </section>
       <MenuContainer />
+      {cartShow && (
+        <CartContainer />
+      )}
     </div>
   )
 }
