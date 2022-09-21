@@ -16,7 +16,7 @@ const Header = () => {
     const firebaseAuth = getAuth(app)
     const provider = new GoogleAuthProvider();
 
-    const [{ user,cartShow }, dispatch] = useStateValue()
+    const [{ user, cartShow, cartItems }, dispatch] = useStateValue()
     const [isMenu, setIsMenu] = useState(false);
 
     const login = async () => {
@@ -43,7 +43,7 @@ const Header = () => {
         })
     }
 
-    const showCart = () => { 
+    const showCart = () => {
         dispatch({
             type: actionType.SET_CART_SHOW,
             cartShow: !cartShow,
@@ -69,9 +69,11 @@ const Header = () => {
                     </motion.ul>
                     <div className='relative flex items-center justify-center' onClick={showCart}>
                         <MdShoppingBasket className='text-textColor text-2xl cursor-pointer' />
-                        <div className='absolute -top-2 -right-2 w-4 h-4 rounded-full bg-cartNumBg flex items-center justify-center'>
-                            <p className='text-xs text-white font-semibold'>2</p>
-                        </div>
+                        {cartItems && cartItems.length > 0 && (
+                            <div className='absolute -top-2 -right-2 w-4 h-4 rounded-full bg-cartNumBg flex items-center justify-center'>
+                                <p className='text-xs text-white font-semibold'>{cartItems.length}</p>
+                            </div>
+                        )}
                     </div>
                     <div className='relative'>
                         <motion.img
@@ -93,7 +95,7 @@ const Header = () => {
                                             <Link to={'/createItem'}>
                                                 <p
                                                     className='px-4 py-2 flex items-center gap-3 cursor-pointer hover:bg-slate-100 transiition-all duration-100 ease-in-out text-textColor text-base'
-                                                    onClick={()=> setIsMenu(false)}>
+                                                    onClick={() => setIsMenu(false)}>
                                                     New Item <MdAdd /></p>
 
                                             </Link>
@@ -113,9 +115,11 @@ const Header = () => {
             <div className='flex items-center justify-between md:hidden w-full h-full'>
                 <div className='relative flex items-center justify-center' onClick={showCart}>
                     <MdShoppingBasket className='text-textColor text-2xl cursor-pointer' />
-                    <div className='absolute -top-2 -right-2 w-4 h-4 rounded-full bg-cartNumBg flex items-center justify-center'>
-                        <p className='text-xs text-white font-semibold'>2</p>
-                    </div>
+                    {cartItems && cartItems.length > 0 && (
+                        <div className='absolute -top-2 -right-2 w-4 h-4 rounded-full bg-cartNumBg flex items-center justify-center'>
+                            <p className='text-xs text-white font-semibold'>{cartItems.length}</p>
+                        </div>
+                    )}
                 </div>
                 <Link to={'/'} className="flex items-center gap-2">
                     <img src={Logo} alt='logo' className='w-8 object-cover' ></img>
@@ -130,7 +134,7 @@ const Header = () => {
                         referrerPolicy="no-referrer"
                         onClick={login}
                     />
-                    { 
+                    {
                         isMenu && (
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.1 }}
