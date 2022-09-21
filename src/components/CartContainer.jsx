@@ -2,15 +2,16 @@ import React, { useState } from 'react'
 import { MdOutlineKeyboardBackspace } from 'react-icons/md'
 import { motion } from 'framer-motion'
 import { RiRefreshFill } from 'react-icons/ri'
-import { BiMinus, BiPlus } from 'react-icons/bi'
 import { useStateValue } from '../context/StateProvider'
 import { actionType } from '../context/reducer'
 import { useEffect } from 'react'
 import EmptyCart from '../img/emptyCart.svg'
+import CartItems from './CartItems'
 
 const CartContainer = () => {
     const [{ cartShow, cartItems, user }, dispatch] = useStateValue()
     const [total, settotal] = useState(0.0)
+
     const showCart = () => {
         dispatch({
             type: actionType.SET_CART_SHOW,
@@ -36,26 +37,7 @@ const CartContainer = () => {
                 <div className='w-full h-full bg-gray-600 rounded-t-[2rem] flex flex-col '>
                     <div className='w-full h-340 md:h-42 px-6 py-10 flex flex-col gap-3 overflow-y-scroll scrollbar-none'>
                         {cartItems && cartItems.map(item => (
-                            <div key={item.id} className='w-full p-1 px-2 rounded-lg bg-gray-500 flex items-center gap-2'>
-                                <img className='w-20 h-20 max-w-[60px]' src={item.imageURL} alt='' />
-                                <div className='flex flex-col gap-2'>
-                                    <p className='text-base text-gray-50'>
-                                        {item?.title}
-                                    </p>
-                                    <p className='text-sm block text-gray-300 font-semibold'>$ {item?.price}</p>
-                                </div>
-                                <div className='group flex items-center gap-2 ml-auto cursor-pointer'>
-                                    <motion.div whileTap={{ scale: 0.75 }}>
-                                        <BiMinus className='text-gray-50' />
-                                    </motion.div>
-                                    <p className='w-5 h-5 rounded-sm bg-gray-500 text-gray-50 flex items-center justify-center'>
-                                        {item.qty}
-                                    </p>
-                                    <motion.div whileTap={{ scale: 0.75 }}>
-                                        <BiPlus className='text-gray-50' />
-                                    </motion.div>
-                                </div>
-                            </div>
+                            <CartItems key={item.id} item={item}/>
                         ))}
                     </div>
                     <div className='w-full flex-1 bg-gray-500 rounded-t-[2rem] flex flex-col items-center justify-evenly px-8 py-2'>
